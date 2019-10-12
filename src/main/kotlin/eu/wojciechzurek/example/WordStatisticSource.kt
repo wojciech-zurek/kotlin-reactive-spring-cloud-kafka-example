@@ -27,7 +27,7 @@ class WordStatisticSource(source: Source) {
     }
 
     @StreamEmitter
-    @SendTo(Source.OUTPUT)
+    @Output(Source.OUTPUT)
     fun send(): Flux<Word> {
         return Flux.interval(Duration.ofSeconds(1))
                 .map { Word("Hello world") }
@@ -40,7 +40,7 @@ class WordStatisticSource(source: Source) {
         fun output(): MessageChannel
 
         companion object {
-            const val OUTPUT = "word-statistic-topic-out"
+            const val OUTPUT = "word-topic-out"
         }
     }
 }

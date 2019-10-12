@@ -2,6 +2,6 @@ package eu.wojciechzurek.example
 
 import reactor.core.publisher.Flux
 
-interface HandleService{
+interface ProcessorService{
     fun handle(incoming: Flux<Word>): Flux<WordStatistic>
 }

@@ -15,7 +15,7 @@ class WordStatisticSink(
     private val logger = loggerFor(javaClass)
 
     @StreamListener(INPUT)
-    fun consume(message: Flux<Word>) {
+    fun consume(message: Flux<WordStatistic>) {
 
         message.subscribe {
             logger.info("Incoming message: {}", it)
