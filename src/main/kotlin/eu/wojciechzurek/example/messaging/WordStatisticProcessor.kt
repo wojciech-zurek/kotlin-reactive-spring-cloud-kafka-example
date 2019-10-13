@@ -1,7 +1,11 @@
-package eu.wojciechzurek.example
+package eu.wojciechzurek.example.messaging
 
-import eu.wojciechzurek.example.WordStatisticProcessor.Sink.Companion.INPUT
-import eu.wojciechzurek.example.WordStatisticProcessor.Sink.Companion.OUTPUT
+import eu.wojciechzurek.example.service.ProcessorService
+import eu.wojciechzurek.example.Word
+import eu.wojciechzurek.example.WordStatistic
+import eu.wojciechzurek.example.loggerFor
+import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Sink.Companion.INPUT
+import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Sink.Companion.OUTPUT
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Input
 import org.springframework.cloud.stream.annotation.Output
@@ -13,7 +17,9 @@ import reactor.core.publisher.Flux
 
 @Component
 @EnableBinding(WordStatisticProcessor.Sink::class)
-class WordStatisticProcessor(private val processorService: ProcessorService) {
+class WordStatisticProcessor(
+        private val processorService: ProcessorService<Word, WordStatistic>
+) {
 
     private val logger = loggerFor(javaClass)
 

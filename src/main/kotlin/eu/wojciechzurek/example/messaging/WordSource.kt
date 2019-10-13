@@ -1,19 +1,20 @@
-package eu.wojciechzurek.example
+package eu.wojciechzurek.example.messaging
 
+import eu.wojciechzurek.example.Word
+import eu.wojciechzurek.example.loggerFor
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Output
 import org.springframework.cloud.stream.reactive.StreamEmitter
 import org.springframework.messaging.Message
 import org.springframework.messaging.MessageChannel
-import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.messaging.support.MessageBuilder
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import java.time.Duration
 
 @Component
-@EnableBinding(WordStatisticSource.Source::class)
-class WordStatisticSource(source: Source) {
+@EnableBinding(WordSource.Source::class)
+class WordSource(source: Source) {
 
     private val logger = loggerFor(javaClass)
     private val output = source.output()
@@ -29,8 +30,8 @@ class WordStatisticSource(source: Source) {
     @StreamEmitter
     @Output(Source.OUTPUT)
     fun send(): Flux<Word> {
-        return Flux.interval(Duration.ofSeconds(1))
-                .map { Word("Hello world") }
+        return Flux.interval(Duration.ofSeconds(5))
+                .map { Word("Hello world from stream emitter") }
     }
 
     @Component
