@@ -13,7 +13,7 @@ class WordStatisticController(
         private val sinkService: SinkService<WordStatistic>
 ) {
 
-    private val emitter = EmitterProcessor.create<WordStatistic>().also {
+    private val emitter = EmitterProcessor.create<WordStatistic>().serialize().also {
         sinkService.add(it)
     }
 
