@@ -4,8 +4,8 @@ import eu.wojciechzurek.example.service.ProcessorService
 import eu.wojciechzurek.example.Word
 import eu.wojciechzurek.example.WordStatistic
 import eu.wojciechzurek.example.loggerFor
-import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Sink.Companion.INPUT
-import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Sink.Companion.OUTPUT
+import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Processor.Companion.INPUT
+import eu.wojciechzurek.example.messaging.WordStatisticProcessor.Processor.Companion.OUTPUT
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.annotation.Input
 import org.springframework.cloud.stream.annotation.Output
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 
 @Component
-@EnableBinding(WordStatisticProcessor.Sink::class)
+@EnableBinding(WordStatisticProcessor.Processor::class)
 class WordStatisticProcessor(
         private val processorService: ProcessorService<Word, WordStatistic>
 ) {
@@ -32,7 +32,7 @@ class WordStatisticProcessor(
 
 
     @Component
-    interface Sink {
+    interface Processor {
 
         @Input(INPUT)
         fun input(): SubscribableChannel
