@@ -7,7 +7,7 @@ kotlin reactive spring cloud with kafka binder example
     git clone git@github.com:wojciech-zurek/kotlin-reactive-spring-cloud-kafka-example.git
 ```
 
-##Requirements
+## Requirements
 
 #### Apache Kafka
 You can use docker and docker-compose.
